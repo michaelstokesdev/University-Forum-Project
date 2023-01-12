@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <script src="/static/scripts/reply.js"></script>
+    <title>Home</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="mx-auto col-md-6 py-4">
+        <h2><%= locals.postData.title %> </h2>
+
+        <div class="card my-3 p-4">
+            <p><b>Posted by:</b> <%= locals.postData.author %></p>
+            <p><%= locals.postData.content %></p>
+        </div>
+        
+        
+        
+    </div>
+    
+    <% if(typeof locals.postData.replies !== []) {%>
+        <div class="mx-auto col-md-6">
+
+            <% for (var i = 0; i < locals.postData.replies.length; i++) {%>
+            <div class="card my-3 p-4">
+                <p><b>Posted by:</b> <%= locals.postData.replies[i].author %></p>
+                <p><%= locals.postData.replies[i].content %></p>
+            </div>
+            <%}%>
+        </div>
+    <%}%>
+    
+    <div style="display: none;" class="alert alert-danger col-md-7 px-1 mx-auto mt-4" id="alertBox">
+        
+    </div>
+
+    <div class="col-md-4 px-1 mx-auto form-inline pb-5" <% if(typeof locals.userData == 'undefined') {%> style="display: none;" <%} %> >
+        <div class="row">
+            <input class="form-control col" type="text" name="replyText" id="replyText">
+            <button class="btn btn-primary col-auto" onclick="reply('<%= locals.postData.id %>')">
+                Reply
+            </button>
+
+        </div>
+    </div>
+
+
+</body>
+</html>

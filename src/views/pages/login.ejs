@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+    <script src="/static/scripts/login.js"></script>
+    <title>Login</title>
+</head>
+<body>
+    
+    <div class="col-lg-7 mx-auto text-center">
+        <h1>Login</h1>
+        <div class="col-md-7 px-1 mx-auto">
+            <div class="form-floating my-2">
+                <input class="form-control" type="text" placeholder="Username" name="username" id="username">
+                <label for="test">Username</label>
+            </div>
+            <div class="form-floating my-2">
+                <input class="form-control" type="password" placeholder="Password" name="password" id="password">
+                <label for="test">Password</label>
+            </div>
+            <div>
+                <button class="btn btn-primary" onclick="submitLogin()" >
+                    Log In
+                    <div style="display: none;" class="spinner-border spinner-border-sm" id="loginSpinner"></div>
+                </button>
+                <a class="btn btn-secondary" href="/">Cancel</a>
+            </div>
+        </div>
+
+        <div style="display: none;" class="alert alert-danger col-md-7 px-1 mx-auto mt-4" id="alertBox">
+            Password incorrect
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <%- include('../partials/head') %> 
+        <script src="/static/scripts/logout.js"></script>
+        <title>Home</title>
+    </head>
+
+    <body>
+        
+        <%- include('../partials/navbar') %>
+
+        <div class="col-md-5 mx-auto px-2">
+            <form action="/new-post" method="post">
+    
+                <label>Post Title</label>
+                <input type="text"  class="form-control" name="title" required>
+    
+                <label>Post Content</label>
+                <textarea class="form-control"  rows="8" name="content" required></textarea>
+    
+                <button class="btn btn-primary" type="submit">Post</button>
+            </form>
+
+        </div>
+
+
+    </body>
+</html>

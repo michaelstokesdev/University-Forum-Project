@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <%- include('../partials/head') %> 
+        <script src="/static/scripts/logout.js"></script>
+        <script src="/static/scripts/admin.js"></script>
+        <title>Home</title>
+    </head>
+
+    <body>
+      <%- include('../partials/navbar') %>
+
+        <div class="col-lg-4 mx-auto">
+
+            <a href="/new-post" id="newPostButton" class="btn btn-primary mt-4" <% if(typeof locals.userData == 'undefined') {%> style="display: none;" <%} %>>New Post</a>
+            
+            <h3 class="mt-4 text-center">Most Recent Posts:</h3>
+
+            <% if(typeof locals.posts !== 'undefined') {%>
+                <% for (var i = 0; i < locals.posts.length; i++) {%>
+                    <% 
+                        date = locals.posts[i].date 
+                        formattedDate = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();  
+                    %>
+                <div class="card my-3 p-4">
+                    <h3 class="card-title"> <a href="/post/<%= locals.posts[i].id %>"> <%= locals.posts[i].title %> </a> </h3>
+                    <p><b>Posted by:</b> <%= locals.posts[i].author %> <b>On:</b> <%= formattedDate %> </p>
+                    
+                    <% if(typeof locals.userData !== 'undefined') { %> 
+                        <% if(locals.userData.admin == true) {%> 
+                            <div>
+                                <button class="btn btn-danger adminButton" onclick="deletePost('<%= locals.posts[i].id %>')">Delete Post</button>
+                                <button class="btn btn-danger adminButton" onclick="deleteUser('<%= locals.posts[i].author %>')">Delete User</button>
+                            </div>
+                        <%} %>
+                    <% } %>
+                </div>
+                <%}%>
+            <%}%>
+
+        </div>
+    </body>
+</html>

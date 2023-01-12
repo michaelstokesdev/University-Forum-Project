@@ -1,0 +1,25 @@
+<script src="/static/scripts/logout.js"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+        Uni Forums
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li <% if(typeof locals.userData !== 'undefined') {%> style="display: none;" <%} %> class="nav-item" id="loginLink">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li <% if(typeof locals.userData !== 'undefined') {%>style="display: none;" <%} %> class="nav-item" id="registerLink">
+            <a class="nav-link" href="/register">Register</a>
+        </li>
+        <li <% if(typeof locals.userData == 'undefined') {%> style="display: none;" <%} %> class="nav-item" id="logoutLink">
+          <a class="nav-link" href="#" onclick="logout()">Log Out</a>
+        </li>
+        <li <% if(typeof locals.userData == 'undefined') {%> style="display: none;" <%} %> class="nav-item" id="loggedInTag">
+          <a class="nav-link"> <% if(typeof locals.userData != 'undefined') {%> <b>Logged in as:</b> <%= userData.userName %> <%} %></a>
+        </li>
+      </ul>
+    </div>
+</nav>
